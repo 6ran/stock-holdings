@@ -1,6 +1,6 @@
 # My Holdings
 
-A personal Android app for Aaruran's Wealthsimple holdings: overview, charts, per-holding detail,
+A personal Android app for Unknown's Wealthsimple holdings: overview, charts, per-holding detail,
 watch-outs, analyst views and related articles.
 
 ## How it works
