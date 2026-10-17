@@ -1,0 +1,41 @@
+name: Update holdings data
+
+on:
+  schedule:
+    - cron: "30 21 * * 1-5"
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths: [positions.json]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install "yfinance>=0.2.54" pandas
+      - name: Rebuild data.json
+        run: python scripts/update.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data.json; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name "holdings-bot"
+          git config user.email "holdings-bot@users.noreply.github.com"
+          git add data.json
+          git commit -m "Update holdings data $(date -u +%F)"
+          git pull --rebase
+          git push
