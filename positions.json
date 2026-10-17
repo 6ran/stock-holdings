@@ -1,0 +1,208 @@
+{
+  "_readme": "Edit quantities, accounts and options here when your Wealthsimple positions change. The weekday workflow re-prices everything and rewrites data.json.",
+  "positionsAsOf": "2026-10-17",
+  "baseDate": "2026-10-13",
+  "marginDebitUsd": 22700,
+  "accounts": [
+    {
+      "name": "TFSA",
+      "valueCad": 43132.89,
+      "note": "+53.00% all time"
+    },
+    {
+      "name": "RRSP",
+      "valueCad": 10360.39,
+      "note": "+4.84% all time"
+    },
+    {
+      "name": "Margin",
+      "valueCad": 634.39,
+      "note": "net of margin loan"
+    }
+  ],
+  "wealthsimple": {
+    "totalCad": 54184.33,
+    "asOf": "2026-10-17"
+  },
+  "indexes": [
+    {
+      "name": "S&P 500",
+      "yahoo": "^GSPC"
+    },
+    {
+      "name": "Nasdaq",
+      "yahoo": "^IXIC"
+    },
+    {
+      "name": "Dow",
+      "yahoo": "^DJI"
+    },
+    {
+      "name": "S&P/TSX",
+      "yahoo": "^GSPTSE"
+    },
+    {
+      "name": "US 10-yr yield",
+      "yahoo": "^TNX",
+      "unit": "%"
+    },
+    {
+      "name": "Brent crude",
+      "yahoo": "BZ=F",
+      "unit": "$"
+    }
+  ],
+  "assets": [
+    {
+      "id": "VFV",
+      "sym": "VFV",
+      "name": "Vanguard S&P 500 Index ETF",
+      "kind": "etf",
+      "exch": "TSX",
+      "cur": "CAD",
+      "about": "Tracks the S&P 500 in Canadian dollars (not currency-hedged), so it moves with both US stocks and USD/CAD.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 59.9699
+        },
+        {
+          "acct": "RRSP",
+          "qty": 53.681
+        }
+      ],
+      "yahoo": "VFV.TO"
+    },
+    {
+      "id": "SPY",
+      "sym": "SPY",
+      "name": "SPDR S&P 500 ETF Trust",
+      "kind": "etf",
+      "exch": "NYSE Arca",
+      "cur": "USD",
+      "about": "The largest S&P 500 ETF, priced in US dollars. Held in your TFSA, where US dividends face 15% withholding tax.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 23.5201
+        }
+      ],
+      "yahoo": "SPY"
+    },
+    {
+      "id": "WMT",
+      "sym": "WMT",
+      "name": "Walmart Inc.",
+      "kind": "stock",
+      "exch": "NYSE",
+      "cur": "USD",
+      "about": "200 shares in your margin account, each 100 covered by a short $120 call (Nov 6 and Nov 20).",
+      "positions": [
+        {
+          "acct": "Margin",
+          "qty": 200,
+          "detail": "200 sh · short 1× Nov 6 & 1× Nov 20 $120C"
+        }
+      ],
+      "yahoo": "WMT",
+      "shortCalls": [
+        {
+          "strike": 120,
+          "expiry": "2026-11-06",
+          "contracts": 1,
+          "mark": null
+        },
+        {
+          "strike": 120,
+          "expiry": "2026-11-20",
+          "contracts": 1,
+          "mark": null
+        }
+      ]
+    },
+    {
+      "id": "FINN",
+      "sym": "FINN",
+      "name": "Fidelity Global Innovators ETF",
+      "kind": "etf",
+      "exch": "Cboe Canada",
+      "cur": "CAD",
+      "about": "Actively managed global growth fund with a heavy technology tilt.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 51.5357
+        }
+      ],
+      "yahoo": "FINN.NE"
+    },
+    {
+      "id": "NFLX",
+      "sym": "NFLX",
+      "name": "Netflix Inc.",
+      "kind": "stock",
+      "exch": "Nasdaq",
+      "cur": "USD",
+      "about": "Streaming. Reports Q3 results Tue Oct 20 after the close.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 10
+        }
+      ],
+      "yahoo": "NFLX"
+    },
+    {
+      "id": "AMZN-C",
+      "sym": "AMZN",
+      "name": "AMZN Apr 16 ’27 $255 call",
+      "kind": "option",
+      "exch": "Nasdaq",
+      "cur": "USD",
+      "about": "Long call on Amazon in your TFSA. Out of the money while AMZN is below $255.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 1,
+          "detail": "1 contract"
+        }
+      ],
+      "yahoo": "AMZN",
+      "underlying": "Amazon.com Inc.",
+      "strike": 255,
+      "expiry": "2027-04-16",
+      "optType": "call",
+      "side": "long",
+      "contracts": 1,
+      "cost": null,
+      "mark": 2530.0,
+      "markAsOf": "2026-10-16"
+    },
+    {
+      "id": "SONY-C",
+      "sym": "SONY",
+      "name": "SONY Jan 15 ’27 $27.50 call",
+      "kind": "option",
+      "exch": "NYSE",
+      "cur": "USD",
+      "about": "Long call on Sony in your margin account. Out of the money while SONY is below $27.50.",
+      "positions": [
+        {
+          "acct": "Margin",
+          "qty": 1,
+          "detail": "1 contract"
+        }
+      ],
+      "yahoo": "SONY",
+      "underlying": "Sony Group Corp.",
+      "strike": 27.5,
+      "expiry": "2027-01-15",
+      "optType": "call",
+      "side": "long",
+      "contracts": 1,
+      "cost": 150.0,
+      "mark": 75.0,
+      "markAsOf": "2026-10-16"
+    }
+  ]
+}
