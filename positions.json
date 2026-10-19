@@ -1,28 +1,28 @@
 {
   "_readme": "Edit quantities, accounts and options here when your Wealthsimple positions change. The weekday workflow re-prices everything and rewrites data.json.",
-  "positionsAsOf": "2026-10-17",
+  "positionsAsOf": "2026-10-19",
   "baseDate": "2026-10-13",
-  "marginDebitUsd": 22700,
+  "marginDebitUsd": 21459,
   "accounts": [
     {
       "name": "TFSA",
-      "valueCad": 43132.89,
-      "note": "+53.00% all time"
+      "valueCad": 43802.02,
+      "note": "+55.37% all time · incl. ~C$3.9k cash"
     },
     {
       "name": "RRSP",
-      "valueCad": 10360.39,
-      "note": "+4.84% all time"
+      "valueCad": 10408.49,
+      "note": "+5.30% all time"
     },
     {
       "name": "Margin",
-      "valueCad": 634.39,
+      "valueCad": 629.93,
       "note": "net of margin loan"
     }
   ],
   "wealthsimple": {
-    "totalCad": 54184.33,
-    "asOf": "2026-10-17"
+    "totalCad": 54907.96,
+    "asOf": "2026-10-19"
   },
   "indexes": [
     {
@@ -69,6 +69,10 @@
         {
           "acct": "RRSP",
           "qty": 53.681
+        },
+        {
+          "acct": "Margin",
+          "qty": 75
         }
       ],
       "yahoo": "VFV.TO"
@@ -96,12 +100,12 @@
       "kind": "stock",
       "exch": "NYSE",
       "cur": "USD",
-      "about": "200 shares in your margin account, each 100 covered by a short $120 call (Nov 6 and Nov 20).",
+      "about": "100 shares in your margin account, covered by one short Nov 6 $120 call.",
       "positions": [
         {
           "acct": "Margin",
-          "qty": 200,
-          "detail": "200 sh · short 1× Nov 6 & 1× Nov 20 $120C"
+          "qty": 100,
+          "detail": "100 sh · short 1× Nov 6 $120C"
         }
       ],
       "yahoo": "WMT",
@@ -109,12 +113,6 @@
         {
           "strike": 120,
           "expiry": "2026-11-06",
-          "contracts": 1,
-          "mark": null
-        },
-        {
-          "strike": 120,
-          "expiry": "2026-11-20",
           "contracts": 1,
           "mark": null
         }
@@ -153,32 +151,6 @@
       "yahoo": "NFLX"
     },
     {
-      "id": "AMZN-C",
-      "sym": "AMZN",
-      "name": "AMZN Apr 16 ’27 $255 call",
-      "kind": "option",
-      "exch": "Nasdaq",
-      "cur": "USD",
-      "about": "Long call on Amazon in your TFSA. Out of the money while AMZN is below $255.",
-      "positions": [
-        {
-          "acct": "TFSA",
-          "qty": 1,
-          "detail": "1 contract"
-        }
-      ],
-      "yahoo": "AMZN",
-      "underlying": "Amazon.com Inc.",
-      "strike": 255,
-      "expiry": "2027-04-16",
-      "optType": "call",
-      "side": "long",
-      "contracts": 1,
-      "cost": null,
-      "mark": 2530.0,
-      "markAsOf": "2026-10-16"
-    },
-    {
       "id": "SONY-C",
       "sym": "SONY",
       "name": "SONY Jan 15 ’27 $27.50 call",
@@ -201,8 +173,8 @@
       "side": "long",
       "contracts": 1,
       "cost": 150.0,
-      "mark": 75.0,
-      "markAsOf": "2026-10-16"
+      "mark": 70.0,
+      "markAsOf": "2026-10-19"
     }
   ]
 }
