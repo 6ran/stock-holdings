@@ -1,28 +1,28 @@
 {
   "_readme": "Edit quantities, accounts and options here when your Wealthsimple positions change. The weekday workflow re-prices everything and rewrites data.json.",
-  "positionsAsOf": "2026-10-19",
+  "positionsAsOf": "2026-10-22",
   "baseDate": "2026-10-13",
-  "marginDebitUsd": 21459,
+  "marginDebitUsd": 20606,
   "accounts": [
     {
       "name": "TFSA",
-      "valueCad": 43802.02,
-      "note": "+55.37% all time · incl. ~C$3.9k cash"
+      "valueCad": 42796.45,
+      "note": "+49.13% all time"
     },
     {
       "name": "RRSP",
-      "valueCad": 10408.49,
-      "note": "+5.30% all time"
+      "valueCad": 10252.52,
+      "note": "+3.74% all time"
     },
     {
       "name": "Margin",
-      "valueCad": 629.93,
-      "note": "net of margin loan"
+      "valueCad": 474.03,
+      "note": "net of C$28.9k margin loan"
     }
   ],
   "wealthsimple": {
-    "totalCad": 54907.96,
-    "asOf": "2026-10-19"
+    "totalCad": 53586.56,
+    "asOf": "2026-10-22"
   },
   "indexes": [
     {
@@ -64,7 +64,7 @@
       "positions": [
         {
           "acct": "TFSA",
-          "qty": 59.9699
+          "qty": 62.5615
         },
         {
           "acct": "RRSP",
@@ -72,7 +72,7 @@
         },
         {
           "acct": "Margin",
-          "qty": 75
+          "qty": 150
         }
       ],
       "yahoo": "VFV.TO"
@@ -88,35 +88,10 @@
       "positions": [
         {
           "acct": "TFSA",
-          "qty": 23.5201
+          "qty": 17.2706
         }
       ],
       "yahoo": "SPY"
-    },
-    {
-      "id": "WMT",
-      "sym": "WMT",
-      "name": "Walmart Inc.",
-      "kind": "stock",
-      "exch": "NYSE",
-      "cur": "USD",
-      "about": "100 shares in your margin account, covered by one short Nov 6 $120 call.",
-      "positions": [
-        {
-          "acct": "Margin",
-          "qty": 100,
-          "detail": "100 sh · short 1× Nov 6 $120C"
-        }
-      ],
-      "yahoo": "WMT",
-      "shortCalls": [
-        {
-          "strike": 120,
-          "expiry": "2026-11-06",
-          "contracts": 1,
-          "mark": null
-        }
-      ]
     },
     {
       "id": "FINN",
@@ -141,7 +116,7 @@
       "kind": "stock",
       "exch": "Nasdaq",
       "cur": "USD",
-      "about": "Streaming. Reports Q3 results Tue Oct 20 after the close.",
+      "about": "Streaming. Reported Q3 Oct 20; weak Q4 outlook and a cut to the 2026 ad-revenue forecast sent the stock to a two-year low.",
       "positions": [
         {
           "acct": "TFSA",
@@ -149,6 +124,58 @@
         }
       ],
       "yahoo": "NFLX"
+    },
+    {
+      "id": "GOOG-C",
+      "sym": "GOOG",
+      "name": "GOOG Sep 17 ’27 $330 call",
+      "kind": "option",
+      "exch": "Nasdaq",
+      "cur": "USD",
+      "about": "Long-dated call on Alphabet in your TFSA, bought Oct 21 for US$4,973. Out of the money while GOOG is below $330.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 1,
+          "detail": "1 contract"
+        }
+      ],
+      "yahoo": "GOOG",
+      "underlying": "Alphabet Inc. (Class C)",
+      "strike": 330,
+      "expiry": "2027-09-17",
+      "optType": "call",
+      "side": "long",
+      "contracts": 1,
+      "cost": 4973.0,
+      "mark": 4457.5,
+      "markAsOf": "2026-10-22"
+    },
+    {
+      "id": "AMZN-C",
+      "sym": "AMZN",
+      "name": "AMZN Apr 16 ’27 $260 call",
+      "kind": "option",
+      "exch": "Nasdaq",
+      "cur": "USD",
+      "about": "Call on Amazon in your TFSA, bought Oct 22 for US$2,460 after selling the Apr ’27 $255 call. Out of the money while AMZN is below $260.",
+      "positions": [
+        {
+          "acct": "TFSA",
+          "qty": 1,
+          "detail": "1 contract"
+        }
+      ],
+      "yahoo": "AMZN",
+      "underlying": "Amazon.com Inc.",
+      "strike": 260,
+      "expiry": "2027-04-16",
+      "optType": "call",
+      "side": "long",
+      "contracts": 1,
+      "cost": 2460.0,
+      "mark": 2340.0,
+      "markAsOf": "2026-10-22"
     },
     {
       "id": "SONY-C",
@@ -173,8 +200,8 @@
       "side": "long",
       "contracts": 1,
       "cost": 150.0,
-      "mark": 70.0,
-      "markAsOf": "2026-10-19"
+      "mark": 115.0,
+      "markAsOf": "2026-10-22"
     }
   ]
 }
