@@ -339,6 +339,7 @@ def build(pos, prev, prov, today=None):
         "watch": watch,
         "events": events,
         "articles": arts,
+        **({"sentiment": prev["sentiment"]} if prev.get("sentiment") else {}),
         "sources": [{"label": "Prices: Yahoo Finance", "url": "https://finance.yahoo.com/"}],
     }
 
