@@ -10,7 +10,7 @@
 :root{
   --bg:#F3F4F1; --surface:#FFFFFF; --sunk:#E9EBE6; --ink:#16202A; --soft:#5B6670; --faint:#8A949C; --line:#DCE0DA;
   --accent:#1D4FD8; --accent-ink:#FFFFFF; --up:#17804B; --down:#B8322A; --warn:#A86A0A; --warn-bg:#FBF0DC; --down-bg:#FBE6E3; --info-bg:#E6ECFB;
-  --s-vfv:#2A6FDB; --s-spy:#D9622B; --s-wmt:#7651CC; --s-finn:#12946E; --s-nflx:#C99400; --s-amzn:#CF3F76; --s-sony:#55697A;
+  --s-vfv:#2A6FDB; --s-spy:#D9622B; --s-wmt:#7651CC; --s-finn:#12946E; --s-nflx:#C99400; --s-amzn:#CF3F76; --s-sony:#55697A; --s-goog:#3B8A3E;
   --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --f-body:"Instrument Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
   --f-num:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -18,11 +18,11 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0E1317; --surface:#161D23; --sunk:#1C252C; --ink:#E7ECEA; --soft:#A2ADB3; --faint:#76828A; --line:#26313A;
   --accent:#7DA2FF; --accent-ink:#0E1317; --up:#46C27F; --down:#F07468; --warn:#E3A945; --warn-bg:#2E2414; --down-bg:#331A18; --info-bg:#18223A;
-  --s-vfv:#6C9CF0; --s-spy:#F08A55; --s-wmt:#A487EE; --s-finn:#3CC79A; --s-nflx:#E8B92E; --s-amzn:#EE6FA0; --s-sony:#93A7B7; color-scheme:dark}}
+  --s-vfv:#6C9CF0; --s-spy:#F08A55; --s-wmt:#A487EE; --s-finn:#3CC79A; --s-nflx:#E8B92E; --s-amzn:#EE6FA0; --s-sony:#93A7B7; --s-goog:#6CC070; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0E1317; --surface:#161D23; --sunk:#1C252C; --ink:#E7ECEA; --soft:#A2ADB3; --faint:#76828A; --line:#26313A;
   --accent:#7DA2FF; --accent-ink:#0E1317; --up:#46C27F; --down:#F07468; --warn:#E3A945; --warn-bg:#2E2414; --down-bg:#331A18; --info-bg:#18223A;
-  --s-vfv:#6C9CF0; --s-spy:#F08A55; --s-wmt:#A487EE; --s-finn:#3CC79A; --s-nflx:#E8B92E; --s-amzn:#EE6FA0; --s-sony:#93A7B7; color-scheme:dark}
+  --s-vfv:#6C9CF0; --s-spy:#F08A55; --s-wmt:#A487EE; --s-finn:#3CC79A; --s-nflx:#E8B92E; --s-amzn:#EE6FA0; --s-sony:#93A7B7; --s-goog:#6CC070; color-scheme:dark}
 *{box-sizing:border-box}
 html,body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
@@ -156,9 +156,38 @@ table.at tr:last-child td{border-bottom:0}
 .filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;cursor:pointer;color:var(--soft)}
 .filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
+/* Sentiment */
+.gauge{position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--down) 0%,var(--warn) 35%,var(--faint) 50%,color-mix(in srgb,var(--up) 60%,var(--faint)) 65%,var(--up) 100%);opacity:.9}
+.gauge i{position:absolute;top:-4px;width:4px;height:16px;border-radius:2px;background:var(--ink);box-shadow:0 0 0 2px var(--surface);transform:translateX(-50%)}
+.gscale{display:flex;justify-content:space-between;font-size:10px;color:var(--faint);margin-top:4px}
+.mood{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.mood>div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.mood .n{font-size:12px;color:var(--soft)} .mood .v{font-family:var(--f-display);font-weight:700;font-size:24px;line-height:1}
+.mood .s{font-size:12px;color:var(--soft)}
+.stack{display:flex;height:8px;border-radius:4px;overflow:hidden}
+.stack span{display:block;height:100%}
+.sc{padding:14px;display:flex;flex-direction:column;gap:12px}
+.sc-h{display:flex;align-items:center;gap:10px}
+.sc-h .nm{font-weight:600;font-size:15px}
+.sc-h .sub{font-size:12px;color:var(--soft)}
+.sc-h .lab{margin-left:auto;font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.lab.bull{background:color-mix(in srgb,var(--up) 14%,transparent);color:var(--up)} .lab.bear{background:var(--down-bg);color:var(--down)} .lab.mixed{background:var(--warn-bg);color:var(--warn)} .lab.na{background:var(--sunk);color:var(--soft)}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.two>div{background:var(--sunk);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.two .k{font-size:11px;color:var(--soft);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.two .big2{font-family:var(--f-num);font-size:17px}
+.two .t{font-size:12px;color:var(--soft);line-height:1.45}
+.says{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.says h4{margin:0 0 4px;font-size:12px;font-weight:600}
+.says ul{margin:0;padding-left:16px;font-size:13px;line-height:1.5;color:var(--ink)}
+.says li{margin-bottom:3px}
+.says .b h4{color:var(--up)} .says .r h4{color:var(--down)}
+.take{font-size:13px;line-height:1.5;margin:0;padding:10px 12px;border-left:3px solid var(--accent);background:var(--info-bg);border-radius:0 10px 10px 0}
+@media (max-width:420px){.says{grid-template-columns:1fr}}
+
 /* Tab bar */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:25;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-nav.tabs .wrap{display:grid;grid-template-columns:repeat(5,1fr);padding-block:6px}
+nav.tabs .wrap{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding-block:6px}
 nav.tabs button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;font-size:11px;font-weight:600;color:var(--faint);cursor:pointer}
 nav.tabs button svg{width:22px;height:22px}
 nav.tabs button[aria-current="page"]{color:var(--accent)}
@@ -199,6 +228,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
   <section class="view" id="v-markets" aria-label="Markets" hidden></section>
   <section class="view" id="v-insights" aria-label="Insights" hidden></section>
   <section class="view" id="v-news" aria-label="News" hidden></section>
+  <section class="view" id="v-sentiment" aria-label="Sentiment" hidden></section>
 </div></main>
 
 <nav class="tabs" aria-label="Sections"><div class="wrap">
@@ -206,6 +236,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
   <button data-tab="holdings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Holdings</button>
   <button data-tab="markets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 3 6-8 3 3"/><path d="M3 21h18"/></svg>Markets</button>
   <button data-tab="insights"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>Insights</button>
+  <button data-tab="sentiment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16a8 8 0 0 1 16 0"/><path d="M12 16l4-5"/><circle cx="12" cy="16" r="1.2"/></svg>Mood</button>
   <button data-tab="news"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>News</button>
 </div></nav>
 
@@ -213,7 +244,7 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
 
 <script>
 (function(){
-const COLORS={VFV:'--s-vfv',SPY:'--s-spy',WMT:'--s-wmt',FINN:'--s-finn',NFLX:'--s-nflx',AMZN:'--s-amzn',SONY:'--s-sony'};
+const COLORS={VFV:'--s-vfv',SPY:'--s-spy',WMT:'--s-wmt',FINN:'--s-finn',NFLX:'--s-nflx',AMZN:'--s-amzn',SONY:'--s-sony',GOOG:'--s-goog'};
 const col=s=>`var(${COLORS[s]||'--faint'})`;
 const $=id=>document.getElementById(id);
 let D=null, tab='overview', newsFilter='All', cmpRange='1M', cmpOn=null, detailRange='All', openId=null;
@@ -299,7 +330,7 @@ function renderOverview(){
       <span class="chip ${cls(t.sinceBaseCad)}">Since ${esc(fdate(t.baseDate))} <b class="num">${signed(t.sinceBaseCad,'CAD',0)}</b></span>
       <span class="chip">USD/CAD <b class="num">${nf(D.fx.usdcad,4)}</b></span>
     </div>
-    <p class="note">Wealthsimple showed <span class="num">C$${nf(t.wealthsimpleCad)}</span> on ${esc(fdate(t.wealthsimpleAsOf))}; it is the source of truth. This estimate excludes cash and uses an approximate margin loan of US$${nf(t.marginDebitUsd,0)}.</p>
+    <p class="note">Wealthsimple showed <span class="num">C$${nf(t.wealthsimpleCad)}</span> on ${esc(fdate(t.wealthsimpleAsOf))}; it is the source of truth. This estimate ${t.cashCad!=null?'includes cash of about C$'+nf(t.cashCad,0):'excludes cash'} and uses ${t.marginDebitCad!=null?'a margin loan of C$'+nf(t.marginDebitCad,0):'an approximate margin loan of US$'+nf(t.marginDebitUsd,0)}.</p>
   </div>
   ${vh.length>1?`<div class="sec"><div class="sec-h"><h2>Net value</h2><small>recorded at each update</small></div><div class="panel cpanel">${lineChart([{name:'Net value',color:'var(--accent)',pts:vh}],{h:140,fmt:v=>nf(v/1000,1)+'k'})}</div></div>`:''}
   <div class="sec"><div class="sec-h"><h2>Accounts</h2><small>Wealthsimple · ${esc(fdate(t.wealthsimpleAsOf))}</small></div>
@@ -321,7 +352,7 @@ function renderHoldings(){
   const v=$('v-holdings'); const {A,gross}=derive(D);
   const groups=[['Stocks & ETFs',A.filter(a=>a.kind!=='option')],['Options',A.filter(a=>a.kind==='option')]];
   v.innerHTML=groups.map(([g,list])=>list.length?`<div class="sec"><div class="sec-h"><h2>${g}</h2><small>${list.length} · tap for detail</small></div><div class="panel rows">${list.map(rowHtml).join('')}</div></div>`:'').join('')+
-  `<p class="note">Values in each holding’s trading currency at the ${esc(fdate(D.asOf))} close. WMT is your 200 shares net of the two short $120 calls when their prices are available. Option values are Wealthsimple’s marks.</p>`;
+  `<p class="note">Values in each holding’s trading currency at the ${esc(fdate(D.asOf))} close. Option values are Wealthsimple’s marks.</p>`;
 }
 
 function renderMarkets(){
@@ -358,6 +389,52 @@ function renderInsights(){
     </tbody></table></div>
     <p class="note">Range bar: dark tick is today’s price, blue tick is the average target. ETFs (VFV, SPY, FINN) don’t carry analyst ratings. Consensus from S&amp;P Global via StockAnalysis.</p>
     <p class="disc">Watch-outs and analyst views are information, not advice to buy or sell. I’m not a licensed financial advisor; check decisions against your own plan or with an advisor.</p></div>`;
+}
+
+function renderNews(){
+  const v=$('v-news');
+  const tags=['All',...new Set(D.articles.flatMap(a=>a.syms||[]))];
+  const list=D.articles.filter(a=>newsFilter==='All'||(a.syms||[]).includes(newsFilter)).sort((a,b)=>b.date.localeCompare(a.date));
+  v.innerHTML=`<div class="sec"><div class="sec-h"><h2>Related articles</h2><small>${list.length}</small></div>
+  <div class="filters" role="group" aria-label="Filter by holding">${tags.map(t=>`<button data-nf="${esc(t)}" aria-pressed="${t===newsFilter}">${esc(t)}</button>`).join('')}</div>
+  <div class="panel arts">${list.map(artHtml).join('')||'<div class="empty"><p>No articles for this holding yet.</p></div>'}</div></div>`;
+}
+function artHtml(a){return `<a class="art" href="${esc(safeUrl(a.url))}" target="_blank" rel="noopener"><span class="m"><span>${esc(a.src)}</span><span>·</span><span>${esc(fdateY(a.date))}</span>${(a.syms||[]).map(s=>`<span class="tag" style="color:${col(s)}">${esc(s)}</span>`).join('')}</span><span class="h">${esc(a.title)}</span>${a.summary?`<span class="s">${esc(a.summary)}</span>`:''}</a>`}
+
+function labCls(l){l=(l||'').toLowerCase();return l.includes('bull')?'bull':l.includes('bear')?'bear':l.includes('mix')||l.includes('neutral')?'mixed':'na'}
+function gaugeHtml(v,lo,hi){return `<div><div class="gauge"><i style="left:${Math.max(1,Math.min(99,v))}%"></i></div><div class="gscale"><span>${esc(lo)}</span><span>${esc(hi)}</span></div></div>`}
+function renderSentiment(){
+  const v=$('v-sentiment'); const S=D.sentiment;
+  if(!S){v.innerHTML='<div class="panel empty"><h3>No sentiment yet</h3><p>Ask Claude to update the market sentiment for your holdings.</p></div>';return}
+  const m=S.mood||{}; const fg=m.fearGreed, aa=m.aaii, vx=m.vix;
+  const syms=new Set(D.assets.map(a=>a.sym));
+  const items=(S.items||[]).filter(it=>syms.has(it.sym)||it.always);
+  v.innerHTML=`
+  <div class="sec"><div class="sec-h"><h2>Market mood</h2><small>as of ${esc(fdate(S.asOf))}</small></div>
+    <div class="mood">
+      ${fg?`<div><span class="n">CNN Fear &amp; Greed</span><span class="v num">${fg.value}</span><span class="s">${esc(fg.label)}${fg.prev!=null?` · ${fg.prev} a week ago`:''}</span>${gaugeHtml(fg.value,'Extreme fear','Extreme greed')}</div>`:''}
+      ${aa?`<div><span class="n">AAII individual investors</span><span class="v num ${aa.bull-aa.bear<0?'down':'up'}">${aa.bull-aa.bear>0?'+':'−'}${nf(Math.abs(aa.bull-aa.bear),1)}</span><span class="s">bull–bear spread · ${nf(aa.bull,1)}% bullish, ${nf(aa.bear,1)}% bearish</span>
+        <div class="stack"><span style="width:${aa.bull}%;background:var(--up)"></span><span style="width:${aa.neutral}%;background:var(--faint)"></span><span style="width:${aa.bear}%;background:var(--down)"></span></div>
+        <span class="s" style="font-size:11px">Long-run average: ${nf(aa.avgBull,1)}% bullish, ${nf(aa.avgBear,1)}% bearish</span></div>`:''}
+      ${vx?`<div><span class="n">VIX volatility index</span><span class="v num">${nf(vx.value)}</span><span class="s">${esc(vx.note||'')}</span></div>`:''}
+    </div>
+    ${m.summary?`<p class="prose">${esc(m.summary)}</p>`:''}
+  </div>
+  ${(S.week||[]).length?`<div class="sec"><div class="sec-h"><h2>What moves sentiment this week</h2></div><div class="panel events">${S.week.map(evHtml).join('')}</div></div>`:''}
+  <div class="sec"><div class="sec-h"><h2>What people are saying</h2><small>by holding</small></div>
+    ${items.map(it=>{const c=it.crowd;const a=D.assets.find(x=>x.sym===it.sym);
+      return `<div class="panel sc">
+      <div class="sc-h"><span class="tick" style="background:${col(it.sym)}">${esc(it.sym.slice(0,4))}</span><div style="min-width:0"><div class="nm">${esc(it.name||it.sym)}</div><div class="sub">${esc(it.held||'')}</div></div><span class="lab ${labCls(it.overall)}">${esc(it.overall||'')}</span></div>
+      <div class="two">
+        <div><span class="k">Crowd · Stocktwits</span>${c?`<span class="big2 num">${c.score}<span style="font-size:12px;color:var(--soft)"> /100</span></span>${gaugeHtml(c.score,'Bearish','Bullish')}<span class="t">${esc(c.label)}${c.volLabel?` · ${esc(c.volLabel)} chatter`:''}${c.basis?` · ${esc(c.basis)}`:''}</span>`:`<span class="t">${esc(it.crowdNote||'No community data for this symbol.')}</span>`}</div>
+        <div><span class="k">Street · analysts</span><span class="t" style="color:var(--ink)">${esc(it.street||'—')}</span></div>
+      </div>
+      ${(it.bulls||[]).length||(it.bears||[]).length?`<div class="says"><div class="b"><h4>Bulls say</h4><ul>${(it.bulls||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="r"><h4>Bears say</h4><ul>${(it.bears||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>`:''}
+      ${it.take?`<p class="take">${esc(it.take)}</p>`:''}
+      ${(it.src||[]).length?`<p class="srcs">${it.src.map(s=>`<a href="${esc(safeUrl(s.url))}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join(' · ')}</p>`:''}
+    </div>`}).join('')}
+  </div>
+  <p class="disc">Sentiment shows what investors and commentators are saying; crowd mood often runs hot or cold and is a poor timing signal on its own. This is information, not advice to buy or sell.</p>`;
 }
 
 function renderNews(){
@@ -420,7 +497,7 @@ function closeDetail(){$('sheet').hidden=true;openId=null;document.body.style.ov
 /* ---------- shell ---------- */
 function renderAll(){
   if(!D) return;
-  renderOverview();renderHoldings();renderMarkets();renderInsights();renderNews();
+  renderOverview();renderHoldings();renderMarkets();renderInsights();renderNews();renderSentiment();
   if(openId) openDetail(openId);
 }
 function setTab(t){tab=t;document.querySelectorAll('nav.tabs button').forEach(b=>b.setAttribute('aria-current',b.dataset.tab===t?'page':'false'));document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='v-'+t);window.scrollTo(0,0);try{localStorage.setItem('msh.tab',t)}catch(e){}}
