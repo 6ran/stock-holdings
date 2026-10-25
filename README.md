@@ -6,8 +6,8 @@ watch-outs, analyst views and related articles.
 ## How it works
 
 - `positions.json` holds what you own: quantities, accounts, options, margin loan.
-- **Update holdings data** (GitHub Actions) runs every weekday at 21:30 UTC (5:30 PM Toronto in summer,
-  4:30 PM in winter). It prices everything with Yahoo Finance and rewrites `data.json`.
+- **Update holdings data** (GitHub Actions) runs every weekday at 4:30 PM Toronto time (summer and
+  winter). It prices everything with Yahoo Finance and rewrites `data.json`, keeping the Trending board.
   It also runs whenever `positions.json` changes, and on demand from the Actions tab.
 - **Build Android app** (GitHub Actions) builds `MyHoldings.apk` whenever the `android/` folder changes
   and publishes it on the `app-latest` release.
