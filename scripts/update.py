@@ -340,6 +340,7 @@ def build(pos, prev, prov, today=None):
         "events": events,
         "articles": arts,
         **({"sentiment": prev["sentiment"]} if prev.get("sentiment") else {}),
+        **({"trending": prev["trending"]} if prev.get("trending") else {}),
         "sources": [{"label": "Prices: Yahoo Finance", "url": "https://finance.yahoo.com/"}],
     }
 
