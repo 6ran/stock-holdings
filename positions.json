@@ -1,28 +1,28 @@
 {
   "_readme": "Edit quantities, accounts and options here when your Wealthsimple positions change. The weekday workflow re-prices everything and rewrites data.json.",
-  "positionsAsOf": "2026-10-22",
+  "positionsAsOf": "2026-11-06",
   "baseDate": "2026-10-13",
-  "marginDebitUsd": 20606,
+  "marginDebitUsd": 17906,
   "accounts": [
     {
       "name": "TFSA",
-      "valueCad": 42796.45,
-      "note": "+49.13% all time"
+      "valueCad": 40944.1,
+      "note": "+41.19% all time"
     },
     {
       "name": "RRSP",
-      "valueCad": 10252.52,
-      "note": "+3.74% all time"
+      "valueCad": 9988.8,
+      "note": "+1.08% all time"
     },
     {
       "name": "Margin",
-      "valueCad": 474.03,
-      "note": "net of C$28.9k margin loan"
+      "valueCad": -374.74,
+      "note": "net of C$29.0k margin loan · US$575 cash"
     }
   ],
   "wealthsimple": {
-    "totalCad": 53586.56,
-    "asOf": "2026-10-22"
+    "totalCad": 50582.88,
+    "asOf": "2026-11-06"
   },
   "indexes": [
     {
@@ -64,7 +64,7 @@
       "positions": [
         {
           "acct": "TFSA",
-          "qty": 62.5615
+          "qty": 63.6437
         },
         {
           "acct": "RRSP",
@@ -88,7 +88,7 @@
       "positions": [
         {
           "acct": "TFSA",
-          "qty": 17.2706
+          "qty": 19.5265
         }
       ],
       "yahoo": "SPY"
@@ -148,60 +148,9 @@
       "side": "long",
       "contracts": 1,
       "cost": 4973.0,
-      "mark": 4457.5,
-      "markAsOf": "2026-10-22"
-    },
-    {
-      "id": "AMZN-C",
-      "sym": "AMZN",
-      "name": "AMZN Apr 16 ’27 $260 call",
-      "kind": "option",
-      "exch": "Nasdaq",
-      "cur": "USD",
-      "about": "Call on Amazon in your TFSA, bought Oct 22 for US$2,460 after selling the Apr ’27 $255 call. Out of the money while AMZN is below $260.",
-      "positions": [
-        {
-          "acct": "TFSA",
-          "qty": 1,
-          "detail": "1 contract"
-        }
-      ],
-      "yahoo": "AMZN",
-      "underlying": "Amazon.com Inc.",
-      "strike": 260,
-      "expiry": "2027-04-16",
-      "optType": "call",
-      "side": "long",
-      "contracts": 1,
-      "cost": 2460.0,
-      "mark": 2340.0,
-      "markAsOf": "2026-10-22"
-    },
-    {
-      "id": "SONY-C",
-      "sym": "SONY",
-      "name": "SONY Jan 15 ’27 $27.50 call",
-      "kind": "option",
-      "exch": "NYSE",
-      "cur": "USD",
-      "about": "Long call on Sony in your margin account. Out of the money while SONY is below $27.50.",
-      "positions": [
-        {
-          "acct": "Margin",
-          "qty": 1,
-          "detail": "1 contract"
-        }
-      ],
-      "yahoo": "SONY",
-      "underlying": "Sony Group Corp.",
-      "strike": 27.5,
-      "expiry": "2027-01-15",
-      "optType": "call",
-      "side": "long",
-      "contracts": 1,
-      "cost": 150.0,
-      "mark": 115.0,
-      "markAsOf": "2026-10-22"
+      "mark": 2432.5,
+      "markAsOf": "2026-11-06"
     }
-  ]
+  ],
+  "_marginNote": "Nov 6: margin loan C$28,963.57 less all cash (about C$3,654 incl. US$574.91 in margin) = C$25,310 net, at USD/CAD 1.4135. The app has no cash field, so cash is netted here to keep the total in line with Wealthsimple."
 }
